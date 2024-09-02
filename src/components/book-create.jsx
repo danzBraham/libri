@@ -73,9 +73,13 @@ export const BookCreate = () => {
         value={book.publishedYear}
         onChange={handleChanges}
       />
-      <textarea name="summary" id="summary" value={book.summary} onChange={handleChanges}>
-        summary
-      </textarea>
+      <textarea
+        name="summary"
+        id="summary"
+        value={book.summary}
+        def
+        onChange={handleChanges}
+      ></textarea>
       <button onClick={handleCreateBook}>Add</button>
     </div>
   );
