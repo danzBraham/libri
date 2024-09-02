@@ -1,14 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import deleteIcon from "@/assets/delete.svg";
 import { useRouter } from "next/navigation";
 
-export const BookCard = ({ _id, title, author, genre, published_year: publishedYear, summary }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+export const BookCard = ({
+  _id,
+  title,
+  author,
+  genre,
+  published_year: publishedYear,
+  summary,
+}) => {
   const router = useRouter();
-  const shortSummary = summary.substring(0, 100);
 
   function handleExpanded() {
     setIsExpanded((currentValue) => !currentValue);
@@ -26,16 +30,24 @@ export const BookCard = ({ _id, title, author, genre, published_year: publishedY
   }
 
   return (
-    <div key={_id}>
-      <h3>{title}</h3>
-      <p>{author}</p>
-      <p>{genre}</p>
-      <p>{publishedYear}</p>
-      <p>{isExpanded ? summary : shortSummary}</p>
-      <span className="cursor-pointer hover:underline inline-block" onClick={handleExpanded}>
-        {isExpanded ? "less" : "more..."}
-      </span>
-      <Image src={deleteIcon} alt="delete icon" onClick={handleDeleteBook} />
+    <div
+      key={_id}
+      className="space-y-2 rounded-lg bg-slate-600 p-4 text-slate-50"
+    >
+      <h3 className="text-3xl font-medium tracking-tight">{title}</h3>
+      <div className="flex items-center gap-2">
+        <p className="text-lg">{author}</p>
+        <p className="w-fit rounded-lg bg-slate-800 p-2">
+          {genre} | {publishedYear}
+        </p>
+      </div>
+      <p>{summary}</p>
+      <Image
+        src={deleteIcon}
+        alt="delete icon"
+        className="rounded-lg bg-rose-500 p-2"
+        onClick={handleDeleteBook}
+      />
     </div>
   );
 };

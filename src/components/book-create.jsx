@@ -1,12 +1,9 @@
 "use client";
 
-import { useAtomValue } from "jotai";
-import { switchAtom } from "./switch-atom";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export const BookCreate = () => {
-  const clicked = useAtomValue(switchAtom);
   const [book, setBook] = useState({
     title: "",
     author: "",
@@ -41,7 +38,7 @@ export const BookCreate = () => {
   }
 
   return (
-    <div className="text-slate-900">
+    <div className="flex flex-col gap-3">
       <input
         type="text"
         name="title"
@@ -56,7 +53,12 @@ export const BookCreate = () => {
         value={book.author}
         onChange={handleChanges}
       />
-      <select name="genre" id="genre" value={book.genre} onChange={handleChanges}>
+      <select
+        name="genre"
+        id="genre"
+        value={book.genre}
+        onChange={handleChanges}
+      >
         <option value="">choose genre</option>
         <option value="Fantasy">Fantasy</option>
         <option value="Fiction">Fiction</option>
