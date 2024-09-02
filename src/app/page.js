@@ -1,4 +1,6 @@
+import { Header } from "@/components/header";
 import { BookCard } from "@/components/book-card";
+import { BookCreate } from "@/components/book-create";
 
 async function getBooks() {
   const response = await fetch("https://v1.appbackend.io/v1/rows/MVktbw3rgVpD", {
@@ -13,12 +15,16 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Libri</h1>
+      <Header />
 
       <section>
         {data.map((book) => (
           <BookCard key={book._id} {...book} />
         ))}
+      </section>
+
+      <section>
+        <BookCreate />
       </section>
     </main>
   );
