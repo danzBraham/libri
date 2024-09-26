@@ -5,7 +5,7 @@ import { BookCard } from "@/components/book-card";
 async function getBooks() {
   try {
     const res = await fetch("https://v1.appbackend.io/v1/rows/MVktbw3rgVpD", {
-      cache: "no-store",
+      cache: "no-cache",
     });
     const books = await res.json();
     return books;
