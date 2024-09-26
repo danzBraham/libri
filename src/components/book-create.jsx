@@ -13,7 +13,7 @@ export const BookCreate = () => {
   });
   const router = useRouter();
 
-  function handleChanges(e) {
+  function handleInputChange(e) {
     const { name, value } = e.target;
     setBook({ ...book, [name]: value });
   }
@@ -34,32 +34,34 @@ export const BookCreate = () => {
         },
       ]),
     });
+    setBook({
+      title: "",
+      author: "",
+      genre: "",
+      publishedYear: "",
+      summary: "",
+    });
     router.refresh();
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex h-fit w-full flex-col gap-3 rounded-lg bg-violet-700 p-6 lg:sticky lg:top-8">
       <input
         type="text"
         name="title"
-        placeholder="title"
         value={book.title}
-        onChange={handleChanges}
+        placeholder="Title"
+        onChange={handleInputChange}
       />
       <input
         type="text"
         name="author"
-        placeholder="author"
         value={book.author}
-        onChange={handleChanges}
+        placeholder="Author"
+        onChange={handleInputChange}
       />
-      <select
-        name="genre"
-        id="genre"
-        value={book.genre}
-        onChange={handleChanges}
-      >
-        <option value="">choose genre</option>
+      <select id="genre" name="genre" value={book.genre} onChange={handleInputChange}>
+        <option value="">Choose Genre</option>
         <option value="Fantasy">Fantasy</option>
         <option value="Fiction">Fiction</option>
         <option value="Travel">Travel</option>
@@ -71,16 +73,17 @@ export const BookCreate = () => {
       <input
         type="text"
         name="publishedYear"
-        placeholder="published year"
         value={book.publishedYear}
-        onChange={handleChanges}
+        placeholder="Published Year"
+        onChange={handleInputChange}
       />
       <textarea
-        name="summary"
         id="summary"
+        name="summary"
         value={book.summary}
-        def
-        onChange={handleChanges}
+        placeholder="Summary"
+        onChange={handleInputChange}
+        rows={5}
       ></textarea>
       <button onClick={handleCreateBook}>Add</button>
     </div>
